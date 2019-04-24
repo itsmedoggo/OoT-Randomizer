@@ -240,6 +240,9 @@ def get_woth_hint(spoiler, world, checked):
     else:
         location_text = get_hint_area(location)
 
+    if world.shuffle_special_interior_entrances and location_text == 'Temple of Time':
+        location_text = 'the road to Temple of Time'
+
     return (GossipText('#%s# is on the way of the hero.' % location_text, ['Light Blue']), location)
 
 
