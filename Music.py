@@ -114,7 +114,7 @@ def process_sequences(rom, sequences, target_sequences, ids, seq_type = 'bgm'):
         name = bgm[0]
         cosmetic_name = name
         type = rom.read_int16(0xB89AE8 + (bgm[1] * 0x10))
-        instrument_set = rom.read_byte(0xB89911 + 0xDD + (bgm[1] * 2))
+        instrument_set = 1
         id = bgm[1]
 
         # Create new sequences
@@ -145,7 +145,7 @@ def process_sequences(rom, sequences, target_sequences, ids, seq_type = 'bgm'):
 
             # Create new sequence, checking third line for correct type
             if (len(lines) > 2 and (lines[2].lower().rstrip() == seq_type.lower() or lines[2] == '')) or (len(lines) <= 2 and seq_type == 'bgm'):
-                seq = TableEntry(fname.split('.')[0], lines[0], instrument_set = int(lines[1], 16))
+                seq = TableEntry(fname.split('.')[0], lines[0], 1)
 
                 if seq.instrument_set < 0x00 or seq.instrument_set > 0x25:
                     raise Exception('Sequence instrument must be in range [0x00, 0x25]')
